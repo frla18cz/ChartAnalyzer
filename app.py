@@ -115,17 +115,16 @@ if st.button('Zobrazit graf'):
             csv_file = f"investicni_data_{ticker}_{start_date.strftime('%Y-%m-%d')}_{end_date.strftime('%Y-%m-%d')}.csv"
             # data.to_csv(csv_file)
             # st.success(f"Data byla uložena do souboru {csv_file}")
+                # Tlačítko pro stažení
+            st.download_button(
+            label="Stáhnout data jako CSV",
+            data=csv_file,
+            file_name='data.csv',
+            mime='text/csv',
+        )
             ###############################################################################
 
     except ValueError as e:
         st.error(f"Chyba při konverzi vstupních hodnot: {e}")
     except Exception as e:
         st.error(f"Neočekávaná chyba: {e}")
-
-    # Tlačítko pro stažení
-    st.download_button(
-    label="Stáhnout data jako CSV",
-    data=csv_file,
-    file_name='data.csv',
-    mime='text/csv',
-)
