@@ -112,17 +112,17 @@ if st.button('Zobrazit graf'):
             ###############################################################################
             # Uložení dat do CSV souboru
             ###############################################################################
-            csv_file = 'data.csv'
-            data.to_csv(csv_file)
-            st.success(f"Data byla uložena do souboru {csv_file}")
-            
+            # Uložení dat do CSV souboru
+            csv_file = f"{ticker}_{start_date.strftime('%Y-%m-%d')}_{end_date.strftime('%Y-%m-%d')}.csv"
+            csv_string = data.to_csv(index=False)
+
             # Tlačítko pro stažení
             st.download_button(
-            label="Stáhnout data jako CSV",
-            data=csv_file,
-            file_name='data.csv',
-            mime='text/csv',
-        )
+                label="Stáhnout data jako CSV",
+                data=csv_string,
+                file_name=csv_file,
+                mime='text/csv',
+            )
             ###############################################################################
 
     except ValueError as e:
