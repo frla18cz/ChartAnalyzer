@@ -112,10 +112,11 @@ if st.button('Zobrazit graf'):
             ###############################################################################
             # Uložení dat do CSV souboru
             ###############################################################################
-            csv_file = f"investicni_data_{ticker}_{start_date.strftime('%Y-%m-%d')}_{end_date.strftime('%Y-%m-%d')}.csv"
-            # data.to_csv(csv_file)
-            # st.success(f"Data byla uložena do souboru {csv_file}")
-                # Tlačítko pro stažení
+            csv_file = 'data.csv'
+            data.to_csv(csv_file)
+            st.success(f"Data byla uložena do souboru {csv_file}")
+            
+            # Tlačítko pro stažení
             st.download_button(
             label="Stáhnout data jako CSV",
             data=csv_file,
