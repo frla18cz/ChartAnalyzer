@@ -30,8 +30,7 @@ def trade_returns(sloupec):
     cumulative_returns = round(cumulative_returns * 100,2)
     since_inception_return = round(since_inception_return * 100,2)
     
-    # cumulative_returns = f"{cumulative_returns:.2%}"
-    # since_inception_return = f"{since_inception_return.iloc[-1]:.2%}"
+
 
     st.markdown(f"**|{sloupec}|**")
     st.markdown(f"|Avg monthy Return|: **{avg_monthly_return}**")
