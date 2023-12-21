@@ -180,8 +180,8 @@ if st.button('Zobrazit graf'):
             st.subheader("Chart NAV")
             st.line_chart(data[['NAV_s_úrokem_a_pákou', 'NAV_bez_úroku_s_pákou', 'NAV_bez_úroku_bez_páky']])
 
-            st.subheader("Chart")
-            st.bar_chart(benchmark_max_DD,NAV_bez_úroku_bez_páky_max_DD, NAV_bez_úroku_s_pákou_max_DD, NAV_s_úrokem_a_pákou_max_DD)
+            # st.subheader("Chart")
+            # st.bar_chart(benchmark_max_DD,NAV_bez_úroku_bez_páky_max_DD, NAV_bez_úroku_s_pákou_max_DD, NAV_s_úrokem_a_pákou_max_DD)
 
 
             st.subheader("Adj Close chart")
