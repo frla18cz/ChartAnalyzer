@@ -141,6 +141,10 @@ if st.button('Zobrazit graf'):
 
             st.subheader("Adj Close chart")
             st.line_chart(data[['Adj Close']])
+
+            st.subheader("Leverage chart")
+            st.line_chart(data[['Leverage_NAV_bez_úroku_s_pákou']])
+
             ###############################################################################
 
 
