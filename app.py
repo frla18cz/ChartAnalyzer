@@ -10,10 +10,11 @@ def max_DD(sloupec):
 
     # Výpočet maximálního drawdownu
     max_drawdown = ep.max_drawdown(returns)
+    max_drawdown = f"{max_drawdown:.2%}"
 
     # Výpis maximálního drawdownu
     print("Maximální drawdown:", max_drawdown)
-    st.markdown(f"{sloupec}: Max_DD: **{max_drawdown}**")
+    st.markdown(f"Max_DD: ({sloupec}): **{max_drawdown}**")
 
             
 
