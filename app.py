@@ -27,8 +27,8 @@ def trade_returns(sloupec):
     cumulative_returns = ep.cum_returns(returns, starting_value=0)
     since_inception_return = cumulative_returns.iloc[-1]
 
-    cumulative_returns = round(cumulative_returns * 100)
-    since_inception_return = since_inception_return * 100
+    cumulative_returns = round(cumulative_returns * 100,2)
+    since_inception_return = round(since_inception_return * 100,2)
     
     # cumulative_returns = f"{cumulative_returns:.2%}"
     # since_inception_return = f"{since_inception_return.iloc[-1]:.2%}"
@@ -131,24 +131,6 @@ if st.button('Zobrazit graf'):
 
 
 
-
-
-
-
-
-
-
-            ###############################################################################
-            # Zobrazení grafů
-            ###############################################################################
-            st.subheader("Chart NAV")
-            st.line_chart(data[['NAV_s_úrokem_a_pákou', 'NAV_bez_úroku_s_pákou', 'NAV_bez_úroku_bez_páky']])
-
-            st.subheader("Adj Close chart")
-            st.line_chart(data[['Adj Close']])
-            ###############################################################################
-
-
             ###############################################################################
             # Uložení dat do CSV souboru
             ###############################################################################
@@ -190,6 +172,20 @@ if st.button('Zobrazit graf'):
             ###############################################################################
             st.subheader('Raw_Data')
             st.dataframe(data)
+            ###############################################################################
+
+            ###############################################################################
+            # Zobrazení grafů
+            ###############################################################################
+            st.subheader("Chart NAV")
+            st.line_chart(data[['NAV_s_úrokem_a_pákou', 'NAV_bez_úroku_s_pákou', 'NAV_bez_úroku_bez_páky']])
+
+            st.subheader("Chart")
+            st.bar_chart(benchmark_max_DD,NAV_bez_úroku_bez_páky_max_DD, NAV_bez_úroku_s_pákou_max_DD, NAV_s_úrokem_a_pákou_max_DD)
+
+
+            st.subheader("Adj Close chart")
+            st.line_chart(data[['Adj Close']])
             ###############################################################################
 
 
