@@ -130,24 +130,6 @@ if st.button('Zobrazit graf'):
             ###############################################################################
 
 
-
-            ###############################################################################
-            # Uložení dat do CSV souboru
-            ###############################################################################
-            # Uložení dat do CSV souboru
-            csv_file = f"{ticker}_{start_date.strftime('%Y-%m-%d')}_{end_date.strftime('%Y-%m-%d')}.csv"
-            csv_string = data.to_csv(index=False)
-
-            # Tlačítko pro stažení
-            st.download_button(
-                label="Stáhnout data jako CSV",
-                data=csv_string,
-                file_name=csv_file,
-                mime='text/csv',
-            )
-            ###############################################################################
-
-
             ###############################################################################
             # Statistiky
             ###############################################################################
@@ -167,12 +149,9 @@ if st.button('Zobrazit graf'):
             NAV_s_úrokem_a_pákou_max_DD = trade_returns('NAV_s_úrokem_a_pákou')
             ###############################################################################
 
-            ###############################################################################
-            # Test o zobrazneí dat
-            ###############################################################################
-            st.subheader('Raw_Data')
-            st.dataframe(data)
-            ###############################################################################
+
+
+
 
             ###############################################################################
             # Zobrazení grafů
@@ -180,13 +159,38 @@ if st.button('Zobrazit graf'):
             st.subheader("Chart NAV")
             st.line_chart(data[['NAV_s_úrokem_a_pákou', 'NAV_bez_úroku_s_pákou', 'NAV_bez_úroku_bez_páky']])
 
-            # st.subheader("Chart")
-            # st.bar_chart(benchmark_max_DD,NAV_bez_úroku_bez_páky_max_DD, NAV_bez_úroku_s_pákou_max_DD, NAV_s_úrokem_a_pákou_max_DD)
+            st.subheader("Chart")
+            st.bar_chart(benchmark_max_DD,NAV_bez_úroku_bez_páky_max_DD, NAV_bez_úroku_s_pákou_max_DD, NAV_s_úrokem_a_pákou_max_DD)
 
 
             st.subheader("Adj Close chart")
             st.line_chart(data[['Adj Close']])
             ###############################################################################
+
+            ###############################################################################
+            # Uložení dat do CSV souboru
+            ###############################################################################
+            # Uložení dat do CSV souboru
+            csv_file = f"{ticker}_{start_date.strftime('%Y-%m-%d')}_{end_date.strftime('%Y-%m-%d')}.csv"
+            csv_string = data.to_csv(index=False)
+
+            # Tlačítko pro stažení
+            st.download_button(
+                label="Stáhnout data jako CSV",
+                data=csv_string,
+                file_name=csv_file,
+                mime='text/csv',
+            )
+            ###############################################################################
+
+            ###############################################################################
+            # Test o zobrazneí dat
+            ###############################################################################
+            st.subheader('Raw_Data')
+            st.dataframe(data)
+            ###############################################################################
+
+
 
 
     except ValueError as e:
