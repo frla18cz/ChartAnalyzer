@@ -14,7 +14,7 @@ def max_DD(sloupec):
 
     # Výpis maximálního drawdownu
     print("Maximální drawdown:", max_drawdown)
-    st.markdown(f"Max_DD: ({sloupec}): **{max_drawdown}**")
+    st.markdown(f"|({sloupec}): **{max_drawdown}**|\n")
 
             
 
@@ -146,12 +146,21 @@ if st.button('Zobrazit graf'):
             ###############################################################################
 
             # Max DD
+            st.subheader('Max_DD')
             benchmark_max_DD = max_DD('Adj Close')
             NAV_bez_úroku_bez_páky_max_DD = max_DD('NAV_bez_úroku_bez_páky')
             NAV_bez_úroku_s_pákou_max_DD = max_DD('NAV_bez_úroku_s_pákou')
             NAV_s_úrokem_a_pákou_max_DD = max_DD('NAV_s_úrokem_a_pákou')
 
             ###############################################################################
+
+            ###############################################################################
+            # Test o zobrazneí dat
+            ###############################################################################
+            st.subheader('Raw_Data')
+            st.dataframe(data)
+            ###############################################################################
+
 
     except ValueError as e:
         st.error(f"Chyba při konverzi vstupních hodnot: {e}")
