@@ -16,6 +16,22 @@ def max_DD(sloupec):
     print("Maximální drawdown:", max_drawdown)
     st.markdown(f"|{sloupec}|: **{max_drawdown}**\n")
 
+def trade_returns(sloupec):
+    returns = data[sloupec].pct_change().dropna()
+
+    # Průměrný měsíční výnos
+    monthly_returns = ep.aggregate_returns(returns, 'monthly')
+    avg_monthly_return = monthly_returns.mean()
+
+    # Celkový výnos od počátku
+    cumulative_returns = ep.cum_returns(returns, starting_value=0)
+    since_inception_return = cumulative_returns.iloc[-1]
+    cumulative_returns = f"{cumulative_returns:.2%}"
+    since_inception_return = f"{since_inception_return:.2%}"
+
+    st.markdown(f"|{sloupec}|: |Avg monthy Return|: **{avg_monthly_return}**\n")
+    st.markdown(f"|Return Since Inception|: **|{since_inception_return}**|\n")
+
             
 
 # Aktuální datum
@@ -156,18 +172,11 @@ if st.button('Zobrazit graf'):
             NAV_s_úrokem_a_pákou_max_DD = max_DD('NAV_s_úrokem_a_pákou')
 
             # Returns
-            returns = data['Adj Close'].pct_change().dropna()
-
-            # Průměrný měsíční výnos
-            monthly_returns = ep.aggregate_returns(returns, 'monthly')
-            avg_monthly_return = monthly_returns.mean()
-
-            # Celkový výnos od počátku
-            cumulative_returns = ep.cum_returns(returns, starting_value=0)
-            since_inception_return = cumulative_returns.iloc[-1]
-
-            st.markdown(f"Průměrný měsíční výnos: {avg_monthly_return}")
-            st.markdown(f"Celkový výnos od počátku: {since_inception_return}")
+            st.subheader('Returrns')
+            benchmark_max_DD = trade_returns('Adj Close')
+            NAV_bez_úroku_bez_páky_max_DD = trade_returns('NAV_bez_úroku_bez_páky')
+            NAV_bez_úroku_s_pákou_max_DD = trade_returns('NAV_bez_úroku_s_pákou')
+            NAV_s_úrokem_a_pákou_max_DD = trade_returns('NAV_s_úrokem_a_pákou')
             ###############################################################################
 
             ###############################################################################
