@@ -14,7 +14,7 @@ def max_DD(sloupec):
 
     # Výpis maximálního drawdownu
     print("Maximální drawdown:", max_drawdown)
-    st.markdown(f"|({sloupec}): **{max_drawdown}**|\n")
+    st.markdown(f"|{sloupec}|: **{max_drawdown}**\n")
 
             
 
@@ -74,13 +74,16 @@ if st.button('Zobrazit graf'):
 
             #expozice
             data['expozice s pákou'] = počet_akcií * (data['Adj Close'])
-
-
-
-
+            ###############################################################################
             # Výpočet denní hodnoty investice bez úroků
             data['NAV_bez_úroku_s_pákou'] = (počet_akcií * (data['Adj Close'])) - (počáteční_kapitál * leverage)+ počáteční_kapitál
             ###############################################################################
+
+
+            ###############################################################################
+            #Výpočet páky      
+            ###############################################################################
+            data['Leverage_NAV_bez_úroku_s_pákou'] = data['expozice s pákou'] / data['NAV_bez_úroku_s_pákou']
 
 
 
