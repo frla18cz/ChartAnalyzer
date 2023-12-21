@@ -26,11 +26,14 @@ def trade_returns(sloupec):
     # Celkový výnos od počátku
     cumulative_returns = ep.cum_returns(returns, starting_value=0)
     since_inception_return = cumulative_returns.iloc[-1]
+
+    cumulative_returns = cumulative_returns * 100
+    since_inception_return = since_inception_return * 100
     
     # cumulative_returns = f"{cumulative_returns:.2%}"
     # since_inception_return = f"{since_inception_return.iloc[-1]:.2%}"
-
-    st.markdown(f"|{sloupec}|: |Avg monthy Return|: **{avg_monthly_return}**\n")
+    st.markdown(f"**|{sloupec}|**")
+    st.markdown(f"|Avg monthy Return|: **{avg_monthly_return}**")
     st.markdown(f"|Return Since Inception|: **|{since_inception_return}**|\n")
 
             
@@ -173,7 +176,7 @@ if st.button('Zobrazit graf'):
             NAV_s_úrokem_a_pákou_max_DD = max_DD('NAV_s_úrokem_a_pákou')
 
             # Returns
-            st.subheader('Returrns')
+            st.subheader('Returns(%)')
             benchmark_max_DD = trade_returns('Adj Close')
             NAV_bez_úroku_bez_páky_max_DD = trade_returns('NAV_bez_úroku_bez_páky')
             NAV_bez_úroku_s_pákou_max_DD = trade_returns('NAV_bez_úroku_s_pákou')
