@@ -22,6 +22,7 @@ def trade_returns(sloupec):
     # Průměrný měsíční výnos
     monthly_returns = ep.aggregate_returns(returns, 'monthly')
     avg_monthly_return = monthly_returns.mean()
+    avg_monthly_return = round(avg_monthly_return * 100, 2)
 
     # Celkový výnos od počátku
     cumulative_returns = ep.cum_returns(returns, starting_value=0)
