@@ -2,6 +2,20 @@ import streamlit as st
 import yfinance as yf
 import datetime
 import pandas as pd
+import empyrical as ep
+
+def max_DD(sloupec):
+    
+    returns = data[sloupec].pct_change().dropna()
+
+    # Výpočet maximálního drawdownu
+    max_drawdown = ep.max_drawdown(returns)
+
+    # Výpis maximálního drawdownu
+    print("Maximální drawdown:", max_drawdown)
+    st.markdown(f"{sloupec}: Max_DD: **{max_drawdown}**")
+
+            
 
 # Aktuální datum
 today = datetime.date.today()
@@ -123,6 +137,19 @@ if st.button('Zobrazit graf'):
                 file_name=csv_file,
                 mime='text/csv',
             )
+            ###############################################################################
+
+
+            ###############################################################################
+            # Statistiky
+            ###############################################################################
+
+            # Max DD
+            benchmark_max_DD = max_DD('Adj Close')
+            NAV_bez_úroku_bez_páky_max_DD = max_DD('NAV_bez_úroku_bez_páky')
+            NAV_bez_úroku_s_pákou_max_DD = max_DD('NAV_bez_úroku_s_pákou')
+            NAV_s_úrokem_a_pákou_max_DD = max_DD('NAV_s_úrokem_a_pákou')
+
             ###############################################################################
 
     except ValueError as e:
