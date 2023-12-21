@@ -155,6 +155,19 @@ if st.button('Zobrazit graf'):
             NAV_bez_úroku_s_pákou_max_DD = max_DD('NAV_bez_úroku_s_pákou')
             NAV_s_úrokem_a_pákou_max_DD = max_DD('NAV_s_úrokem_a_pákou')
 
+            # Returns
+            returns = data['Adj Close'].pct_change().dropna()
+
+            # Průměrný měsíční výnos
+            monthly_returns = ep.aggregate_returns(returns, 'monthly')
+            avg_monthly_return = monthly_returns.mean()
+
+            # Celkový výnos od počátku
+            cumulative_returns = ep.cum_returns(returns, starting_value=0)
+            since_inception_return = cumulative_returns.iloc[-1]
+
+            st.markdown(f"Průměrný měsíční výnos: {avg_monthly_return}")
+            st.markdown(f"Celkový výnos od počátku: {since_inception_return}")
             ###############################################################################
 
             ###############################################################################
